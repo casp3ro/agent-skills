@@ -1,0 +1,50 @@
+# macOS
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Node (scripts are zero-dep; still ignore if someone runs npm locally)
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+package-lock.json
+
+# Env / local secrets
+.env
+.env.*
+!.env.example
+
+# Manual skill zip (README: cd skills && zip -r ../dist/swift.zip swift)
+dist/
+
+# Swift Package Manager / Xcode (validation/SwiftSkillValidation)
+.build/
+**/.build/
+.swiftpm/
+**/.swiftpm/
+DerivedData/
+**/DerivedData/
+xcuserdata/
+**/xcuserdata/
+*.xcuserstate
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+timeline.xctimeline
+playground.xcworkspace
+*.xcresult
+
+# Editor / OS noise
+*~
+*.swp
+*.swo
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log

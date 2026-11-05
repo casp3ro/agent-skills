@@ -1,0 +1,16 @@
+{
+  "name": "@casp3ro/agent-skills",
+  "private": true,
+  "type": "module",
+  "description": "Agent skills by casp3ro, starting with modern Swift 6 and SwiftUI best practices.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs",
+    "check": "node scripts/build.mjs --check && node scripts/validate.mjs",
+    "dev": "node scripts/build.mjs && node scripts/validate.mjs"
+  }
+}

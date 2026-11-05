@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Apple Platforms",
+      "description": "Skills for building production Swift and SwiftUI apps for iOS and macOS.",
+      "skills": ["swift"]
+    }
+  ]
+}

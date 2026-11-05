@@ -1,0 +1,19 @@
+{
+  "title": "Swift Best Practices",
+  "version": "1.0.0",
+  "organization": "casp3ro",
+  "date": "November 2026",
+  "scope": "Swift, SwiftUI, and Swift package codebases",
+  "abstract": "Production guide for modern Swift (Swift 6.2+ language mode, current through Swift 6.4) on iOS and macOS, designed for AI agents and LLMs. Contains 62 rules across 12 categories, prioritized by impact from critical (concurrency and data-race safety, data modeling with value types) to incremental (tooling and observability). Covers approachable concurrency (main-actor default isolation, @concurrent, actors, task groups, cancellation), enums and strong types, optionals and typed errors, ARC, SwiftUI architecture with @Observable and dependency injection, repository structure with local Swift packages, typed networking clients, SwiftData and Keychain persistence, webhooks, push notifications and WebSockets, Swift Testing, and configuration. Each rule explains why it matters and compares incorrect and correct Swift code. Two reference primers explain how Swift works for TypeScript developers and how concurrency works for developers coming from single-threaded JavaScript.",
+  "references": [
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/",
+    "https://www.swift.org/documentation/api-design-guidelines/",
+    "https://www.swift.org/migration/documentation/migrationguide",
+    "https://developer.apple.com/swift/get-started/",
+    "https://developer.apple.com/documentation/swiftui",
+    "https://developer.apple.com/documentation/swiftdata",
+    "https://developer.apple.com/documentation/testing",
+    "https://github.com/swiftlang/swift-evolution",
+    "https://www.skills.sh/emilkowalski/skills/write-swift"
+  ]
+}

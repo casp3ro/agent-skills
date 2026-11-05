@@ -1,0 +1,24 @@
+# Keep Cursor indexing / tree aligned with .gitignore noise
+
+.DS_Store
+**/.DS_Store
+
+node_modules/
+**/node_modules/
+
+dist/
+
+.build/
+**/.build/
+.swiftpm/
+**/.swiftpm/
+DerivedData/
+**/DerivedData/
+xcuserdata/
+**/xcuserdata/
+*.xcresult
+
+.idea/
+*.log
+.env
+.env.*
