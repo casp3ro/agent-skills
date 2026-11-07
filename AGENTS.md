@@ -11,11 +11,17 @@ A collection of Agent Skills published as `casp3ro/agent-skills` and installable
 | Command | What it does |
 |---|---|
 | `npm run build` | Regenerates `skills/*/AGENTS.md`, the quick-reference block in `skills/*/SKILL.md`, and `evals/*/test-cases.json` |
-| `npm run validate` | Validates every `SKILL.md` against the Agent Skills spec and every rule file against the rule format |
-| `npm run check` | Fails if generated files are stale or validation fails (run before committing; CI runs it) |
+| `npm run validate` | Quality gate: Agent Skills spec, authoring best practices, rule format, evals, registration (`--skill=<name>`, `--json`) |
+| `npm run test:harness` | Self-test of the hooks, validator and scaffolder |
+| `npm run check` | Build check + validate + harness self-test (run before committing; CI and the Cursor stop hook run it) |
+| `npm run new-skill -- <name> --type=simple\|rules` | Scaffolds a skill and its evals from `.cursor/templates/` |
 | `cd validation/SwiftSkillValidation && swift build && swift test` | Compiles and tests the Swift examples (macOS, Xcode 26+) |
 
 There are no npm dependencies; scripts use the Node.js 20+ standard library only.
+
+## Harness
+
+Cursor rules, slash workflows (`/new-skill`, `/new-rule`, `/research-skill`, `/review-skill`, `/eval-skill`, `/release-skill`), subagents and hooks live in `.cursor/` (overview: `.cursor/README.md`). The definition of done for any skill is `.cursor/docs/quality-bar.md`; every skill needs `evals/<name>/evals.json` and `triggers.json` (format: `.cursor/docs/eval-protocol.md`) and a research brief in `docs/research/<name>.md`.
 
 ## Never Edit by Hand
 

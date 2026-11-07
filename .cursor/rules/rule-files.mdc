@@ -1,0 +1,17 @@
+---
+description: Format and quality requirements for rule files in rule-based skills
+globs: skills/*/rules/**, skills/*/metadata.json
+alwaysApply: false
+---
+
+# Rule files (rule-based skills such as `swift`)
+
+- File name: `<section-prefix>-<topic>.md`, kebab-case; the prefix must exist in `rules/_sections.md`. Start from `rules/_template.md`.
+- Frontmatter: `title`, `impact` (`CRITICAL` | `HIGH` | `MEDIUM-HIGH` | `MEDIUM` | `LOW-MEDIUM` | `LOW`), `impactDescription`, `tags`.
+- Body order: `## <title>` (identical to frontmatter), `**Impact: LEVEL (impactDescription)**`, why it matters in terms of a concrete failure, `**Incorrect (...):**` + fenced code, `**Correct (...):**` + fenced code, optional notes, `Reference: [title](primary source)`.
+- Every fence has a language tag. Use `text` for trees and diagrams.
+- Correct examples must compile or run as written, given types defined in the same rule or obviously named placeholders. For `swift`, add self-contained examples to `validation/SwiftSkillValidation` so CI compiles them.
+- One rule, one idea. If the rule needs "and also", split it.
+- Impact reflects the cost of violating it, not how interesting it is: `CRITICAL` means crashes, data loss, security or race conditions.
+- Do not edit `AGENTS.md`, the SKILL.md quick-reference block, or `evals/*/test-cases.json`: the post-edit hook regenerates them via `npm run build`.
+- Version bump in `metadata.json` must match `metadata.version` in `SKILL.md` (use `/release-skill`).

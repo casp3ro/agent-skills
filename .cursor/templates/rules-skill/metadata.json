@@ -1,0 +1,9 @@
+{
+  "title": "{{title}}",
+  "version": "0.1.0",
+  "organization": "casp3ro",
+  "date": "{{monthYear}}",
+  "scope": "TODO: codebases this guide applies to",
+  "abstract": "TODO: what the guide covers, how many rules, how they are prioritized.",
+  "references": []
+}

@@ -85,18 +85,21 @@ agent-skills/
 │       ├── metadata.json       # title, version, abstract, references
 │       ├── rules/              # one Markdown file per rule
 │       └── references/         # primers loaded on demand
-├── evals/swift/test-cases.json # incorrect/correct examples for LLM evaluation (generated)
-├── scripts/                    # zero-dependency build and validation (Node.js 20+)
+├── evals/swift/                # evals.json, triggers.json, benchmark.md, test-cases.json (generated)
+├── docs/research/              # cited research briefs per skill
+├── scripts/                    # zero-dependency build, validate, scaffold, harness self-test (Node.js 20+)
 ├── validation/                 # Swift package that compiles the rule examples in CI
+├── .cursor/                    # authoring harness: rules, /workflows, subagents, hooks (not published)
 └── .github/workflows/ci.yml
 ```
 
 ## Development
 
 ```bash
-npm run build      # regenerate AGENTS.md, SKILL.md quick reference, evals
-npm run validate   # check SKILL.md frontmatter and every rule file
-npm run check      # CI: fail if generated files are stale or validation fails
+npm run build          # regenerate AGENTS.md, SKILL.md quick reference, evals
+npm run validate       # quality gate for every skill
+npm run test:harness   # self-test of hooks, validator and scaffolder
+npm run check          # all of the above in check mode (CI, Cursor stop hook)
 ```
 
 Compile and test the Swift examples (macOS with Xcode 26 or later):
@@ -107,7 +110,7 @@ swift build
 swift test
 ```
 
-See [AGENTS.md](AGENTS.md) for how to add rules and new skills.
+To add or change skills, use the Cursor workflows (`/new-skill`, `/new-rule`, `/review-skill`, `/eval-skill`, `/release-skill`) described in [.cursor/README.md](.cursor/README.md). Formats and commands: [AGENTS.md](AGENTS.md).
 
 ## License
 

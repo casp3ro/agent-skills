@@ -1,0 +1,12 @@
+[
+  { "query": "TODO: should trigger (explicit phrasing)", "should_trigger": true },
+  { "query": "TODO: should trigger (casual phrasing, skill not named)", "should_trigger": true },
+  { "query": "TODO: should trigger (error message or symptom)", "should_trigger": true },
+  { "query": "TODO: should trigger (uncommon use case)", "should_trigger": true },
+  { "query": "TODO: should trigger (competes with another skill but should win)", "should_trigger": true },
+  { "query": "TODO: near miss (shares keywords, different domain)", "should_trigger": false },
+  { "query": "TODO: near miss (adjacent technology)", "should_trigger": false },
+  { "query": "TODO: near miss (same domain, task better served elsewhere)", "should_trigger": false },
+  { "query": "TODO: near miss (ambiguous wording)", "should_trigger": false },
+  { "query": "TODO: near miss (homonym)", "should_trigger": false }
+]

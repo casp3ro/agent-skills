@@ -1,0 +1,21 @@
+[
+  { "query": "Review this SwiftUI view model and tell me what will break under Swift 6 strict concurrency", "should_trigger": true },
+  { "query": "How should I split my iOS app into Swift packages so features don't depend on each other?", "should_trigger": true },
+  { "query": "Getting 'main actor-isolated property can not be referenced from a nonisolated context' in my Xcode project, how do I fix it properly?", "should_trigger": true },
+  { "query": "write me an api client in swift with retries and token refresh for our backend", "should_trigger": true },
+  { "query": "Should my app's settings model be an ObservableObject or use @Observable? We target iOS 18.", "should_trigger": true },
+  { "query": "I know TypeScript well; explain how Swift optionals and enums with associated values map to what I know", "should_trigger": true },
+  { "query": "Set up SwiftData with a background sync from our REST API and a schema migration for v2", "should_trigger": true },
+  { "query": "Where should I store the user's refresh token in a macOS app, and how do I read it back?", "should_trigger": true },
+  { "query": "Our Swift Testing suite is flaky when tests run in parallel; how should I restructure the fakes?", "should_trigger": true },
+  { "query": "Port this Kotlin coroutine flow to idiomatic Swift async/await with cancellation", "should_trigger": true },
+  { "query": "Write a Stripe webhook handler in Node.js with Express that verifies the signature", "should_trigger": false },
+  { "query": "Fix this React Native component that crashes on iOS when the keyboard opens", "should_trigger": false },
+  { "query": "Explain the difference between Swift and SWIFT bank transfers for international payments", "should_trigger": false },
+  { "query": "Configure my Xcode Cloud workflow to upload builds to TestFlight automatically", "should_trigger": false },
+  { "query": "Write a Kotlin data class with kotlinx.serialization for this JSON payload", "should_trigger": false },
+  { "query": "Help me design App Store screenshots and a subtitle for my habit tracker app", "should_trigger": false },
+  { "query": "Convert this Objective-C++ audio engine to C++20 with no Apple dependencies", "should_trigger": false },
+  { "query": "My Flutter app's HTTP client needs token refresh with a single retry; show the Dart code", "should_trigger": false },
+  { "query": "Configure SwiftLint rules for a React Native iOS module", "should_trigger": false }
+]

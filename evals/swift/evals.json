@@ -1,0 +1,72 @@
+{
+  "skill_name": "swift",
+  "evals": [
+    {
+      "id": 1,
+      "name": "fix-swift6-sendable-errors",
+      "prompt": "My Swift 6 package fails to compile. ImageLoader is a class with a `var cache: [URL: Data] = [:]` dictionary, and `load(_:)` is called from several Tasks at once. The compiler says \"Passing closure as a 'sending' parameter risks causing data races\" and the class is not Sendable. Fix it properly and explain the change.",
+      "expected_output": "ImageLoader's mutable cache is protected by an actor (or the state is otherwise isolated), callers await it, and the explanation names the data race the compiler prevented.",
+      "files": [],
+      "expectations": [
+        "Converts ImageLoader (or its cache) into an actor, or isolates the mutable state, instead of adding @unchecked Sendable or nonisolated(unsafe)",
+        "Call sites use `await` to access the actor-isolated state",
+        "Explains that concurrent access to the dictionary is a data race that Swift 6 rejects at compile time",
+        "Does not introduce DispatchQueue, locks around an actor, or Task.detached"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "structure-modular-ios-app",
+      "prompt": "I'm starting a production iOS app in SwiftUI with login, a feed loaded from our REST API, and offline caching. Propose the repository and module structure, including Package.swift, and show how the feed feature gets its API dependency without importing the networking module directly.",
+      "expected_output": "A thin app target plus a local Swift package with Domain, Networking, Persistence, DesignSystem and feature modules; Package.swift with Swift 6 settings; features depending on Domain protocols wired in a composition root.",
+      "files": [],
+      "expectations": [
+        "Proposes a thin Xcode app target plus a local Swift package with separate modules for domain, networking, persistence and features",
+        "Package.swift uses swift-tools-version 6.2 or later and enables main-actor default isolation (defaultIsolation(MainActor.self)) for UI modules",
+        "The feed feature depends on a repository protocol from the Domain module, not on the networking module",
+        "Concrete implementations are wired in a single composition root (the App struct or equivalent)",
+        "Uses @Observable (not ObservableObject) for the feed model"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "typed-api-client-with-token-refresh",
+      "prompt": "Write a production-ready Swift HTTP client for our REST API: JSON with snake_case keys, bearer tokens that expire, and many screens firing requests at the same time. When a token expires we must refresh it only once and retry. Include how I'd unit test it without hitting the network.",
+      "expected_output": "A single HTTPClient with typed endpoints, injected transport protocol, snake_case decoding, an actor-based token store that deduplicates refreshes, a single retry on 401, mapped errors, and stub-transport tests.",
+      "files": [],
+      "expectations": [
+        "Defines endpoints as typed values carrying the response type (e.g. Endpoint<Response>)",
+        "Stores the token in an actor that records the in-flight refresh Task before awaiting, so concurrent callers share one refresh",
+        "Retries a 401 at most once and surfaces a second 401 as an error",
+        "Injects the transport through a protocol so tests can return stubbed responses",
+        "Maps URLError and decoding failures to a single domain error type",
+        "Contains no force-unwraps on response data"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "explain-await-to-typescript-dev",
+      "prompt": "I'm a TypeScript developer. In Swift, why do I need `await` to read a property on an actor even though it isn't doing any I/O? In JavaScript await is only for promises. Explain with a short example.",
+      "expected_output": "Explains actor isolation and that await marks a possible suspension while waiting for exclusive access, contrasting with the single-threaded JS event loop, with a minimal code example.",
+      "files": [],
+      "expectations": [
+        "Explains that JavaScript runs user code on one thread, while Swift code can run on many threads in parallel",
+        "Explains that an actor serializes access to its state and `await` marks a point where the caller may wait for its turn",
+        "Includes a short Swift actor example with an awaited property or method access"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "webhook-to-app-architecture",
+      "prompt": "When Stripe confirms a payment I want my iOS app to update the order screen immediately. How do I receive the Stripe webhook in the app? Give me the architecture and the key code.",
+      "expected_output": "Corrects the premise: webhooks are received by the backend, which verifies the signature, records the event idempotently, then notifies the app via APNs push or a WebSocket; the app re-fetches state from the API.",
+      "files": [],
+      "expectations": [
+        "States that the iOS app cannot receive webhooks directly and the backend must receive them",
+        "The backend verifies the webhook signature and deduplicates events by ID before processing",
+        "Notifies the app through APNs push and/or a WebSocket, and the app re-fetches authoritative state from the API",
+        "Does not put Stripe secret keys in the app"
+      ]
+    }
+  ]
+}

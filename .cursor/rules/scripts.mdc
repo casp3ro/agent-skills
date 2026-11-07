@@ -1,0 +1,16 @@
+---
+description: Standards for repository scripts, skill scripts and hook scripts
+globs: scripts/**, skills/*/scripts/**, .cursor/hooks/**
+alwaysApply: false
+---
+
+# Scripts
+
+- Node.js 20+ ESM (`.mjs`), standard library only. Shebang `#!/usr/bin/env node`. Shell scripts: `#!/bin/bash` and `set -euo pipefail`.
+- Status and progress to stderr; machine-readable results (JSON) to stdout; exit code 0 only on success.
+- Solve, don't punt: handle expected failures (missing file, bad input) with a message that says what to do next.
+- Every threshold or magic number has a comment explaining why that value.
+- Forward slashes in paths; resolve paths from the repository root, never from the caller's cwd.
+- Skill scripts are published with the skill: no repository-specific paths, no network access unless the skill documents it, dependencies and install commands stated in `SKILL.md`.
+- Hook scripts must stay fast (validation of one skill well under the hook timeout) and fail open only for infrastructure errors, never for quality failures.
+- After changing `scripts/` or `.cursor/hooks/`, run `npm run test:harness` and add a case to `scripts/test-harness.mjs` for any new guardrail.

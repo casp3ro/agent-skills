@@ -2,6 +2,22 @@
 
 This primer assumes no prior knowledge of threads. It explains why native apps need a different mental model than Node.js or the browser, and how Swift 6.2+ makes that model approachable. The `concurrency-*` rules contain the concrete do/don't patterns.
 
+## Contents
+
+- [1. The JavaScript Baseline](#1-the-javascript-baseline)
+- [2. What Is Different on a Native Platform](#2-what-is-different-on-a-native-platform)
+- [3. Vocabulary](#3-vocabulary)
+- [4. The Default Since Swift 6.2: Approachable Concurrency](#4-the-default-since-swift-62-approachable-concurrency)
+- [5. async/await](#5-asyncawait)
+- [6. Starting Work](#6-starting-work)
+- [7. Background Work with @concurrent](#7-background-work-with-concurrent)
+- [8. Parallelism](#8-parallelism)
+- [9. Actors](#9-actors)
+- [10. Sendable](#10-sendable)
+- [11. Cancellation](#11-cancellation)
+- [12. Decision Checklist](#12-decision-checklist)
+- [Further Reading](#further-reading)
+
 ---
 
 ## 1. The JavaScript Baseline
@@ -41,7 +57,7 @@ Historically (Objective-C, early Swift) developers prevented races by hand with 
 | `Sendable` | A type that may safely cross between isolation domains | Data you can `postMessage` |
 | Structured concurrency | Child tasks live within their parent's scope; cancellation propagates down | No native equivalent (manual `AbortController`) |
 
-## 4. The 2026 Default: Approachable Concurrency
+## 4. The Default Since Swift 6.2: Approachable Concurrency
 
 Since Swift 6.2 (Xcode 26), new **app** projects enable two settings (Build Settings → Swift Compiler – Concurrency):
 

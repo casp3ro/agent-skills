@@ -1,0 +1,22 @@
+---
+description: How to write SKILL.md files, descriptions and reference files for published skills
+globs: skills/**/SKILL.md, skills/**/references/**, skills/**/assets/**, skills/**/README.md
+alwaysApply: false
+---
+
+# Writing skill content
+
+Full guidance: `.cursor/docs/authoring-guide.md`. Apply these every time you touch a skill's content:
+
+- **Description = trigger.** Third person, capability first, then "Use when ..." with each distinct branch once, in words users type. Check it against `evals/<name>/triggers.json`, especially the near misses.
+- **Earn every line.** Write only what changes behavior versus the model's default: conventions, decisions, gotchas, exact procedures, current versions. Delete sentences the model would follow anyway.
+- **One default, one escape hatch** per choice. No menus of equivalent options.
+- **Positive phrasing.** State the target behavior; reserve prohibitions for hard guardrails and pair them with the positive target.
+- **Concrete examples** (input/output or incorrect/correct) for every pattern that matters. Examples must be correct; compile or run them when possible.
+- **Progressive disclosure.** `SKILL.md` holds what every branch needs (under 500 lines). Branch detail goes in `references/`, linked directly from `SKILL.md` with a "read when ..." pointer, one level deep. References over 100 lines start with a table of contents.
+- **Workflows end on checkable criteria.** Number steps, give long workflows a copy-able checklist, add validator loops for quality-critical output.
+- **No relative time.** State the version a fact applies to instead of "currently" or "new in".
+- **One term per concept** across all files of the skill.
+- **Sources.** Every version-specific claim traces to `docs/research/<name>.md`. Attribute adapted material in the skill README; never copy unlicensed content.
+
+After editing, the post-edit hook validates the skill and reports errors back; fix them before moving on.

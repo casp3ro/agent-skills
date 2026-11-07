@@ -1,0 +1,32 @@
+{
+  "skill_name": "{{name}}",
+  "evals": [
+    {
+      "id": 1,
+      "name": "TODO-short-kebab-name",
+      "prompt": "TODO: a realistic, multi-step user request the skill should improve, phrased the way a user would type it.",
+      "expected_output": "TODO: what a great answer contains.",
+      "files": [],
+      "expectations": [
+        "TODO: an objectively checkable statement about the output",
+        "TODO: a second checkable statement that a baseline answer would likely miss"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "TODO-short-kebab-name",
+      "prompt": "TODO: a different branch of the skill.",
+      "expected_output": "TODO",
+      "files": [],
+      "expectations": ["TODO", "TODO"]
+    },
+    {
+      "id": 3,
+      "name": "TODO-short-kebab-name",
+      "prompt": "TODO: an edge case or a request with a wrong premise the skill should correct.",
+      "expected_output": "TODO",
+      "files": [],
+      "expectations": ["TODO", "TODO"]
+    }
+  ]
+}

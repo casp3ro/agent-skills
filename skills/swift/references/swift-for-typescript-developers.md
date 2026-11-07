@@ -4,6 +4,13 @@ A primer on how Swift works and how its syntax maps from TypeScript, Node.js, an
 
 Current as of November 2026: Swift 6.4 (released September 2026), Xcode 27.
 
+## Contents
+
+- [1. How Swift Runs](#1-how-swift-runs)
+- [2. Syntax Map](#2-syntax-map)
+- [3. Choosing Types: Quick Decision Table](#3-choosing-types-quick-decision-table)
+- [4. Common Mistakes from TypeScript Habits](#4-common-mistakes-from-typescript-habits)
+
 ---
 
 ## 1. How Swift Runs

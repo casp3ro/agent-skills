@@ -5,7 +5,8 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-export const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+// SKILLS_REPO_ROOT lets the harness tests run the scripts against fixture repositories.
+export const REPO_ROOT = process.env.SKILLS_REPO_ROOT || join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 export const SKILLS_DIR = join(REPO_ROOT, 'skills')
 export const EVALS_DIR = join(REPO_ROOT, 'evals')
 

@@ -2,22 +2,22 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
 
 jobs:
-  validate-skills:
+  skills:
     name: Build and validate skills
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
-      - name: Check generated files and validate skills
+          node-version: 22
+      - name: Generated files are current, skills are valid, harness self-test passes
         run: npm run check
 
-  validate-swift:
+  swift:
     name: Compile and test Swift examples
     runs-on: macos-26
     defaults:
@@ -25,9 +25,17 @@ jobs:
         working-directory: validation/SwiftSkillValidation
     steps:
       - uses: actions/checkout@v4
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode.app
-      - name: Build
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: Build (macOS)
         run: swift build
-      - name: Test with Thread Sanitizer
+      - name: Test with Thread Sanitizer (macOS)
         run: swift test --sanitize=thread
+      - name: Build (iOS Simulator)
+        run: |
+          xcodebuild build \
+            -scheme SwiftSkillValidation-Package \
+            -destination 'generic/platform=iOS Simulator' \
+            -skipPackagePluginValidation

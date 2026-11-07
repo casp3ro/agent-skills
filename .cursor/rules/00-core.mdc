@@ -1,0 +1,40 @@
+---
+description: Core workflow and guardrails for the casp3ro/agent-skills repository
+alwaysApply: true
+---
+
+# agent-skills: core rules
+
+This repository publishes Agent Skills. Everything under `skills/` ships to users via `npx skills add casp3ro/agent-skills`, so treat it like a released product.
+
+## Workflows
+
+Use the slash workflows instead of improvising; each one encodes the full quality process:
+
+| Task | Workflow |
+|---|---|
+| New skill | `/new-skill <name> "<purpose>"` |
+| New rule in a rule-based skill | `/new-rule <skill> <prefix> "<title>"` |
+| Prior-art and source research | `/research-skill <topic>` |
+| Quality review | `/review-skill <name>` |
+| Measure with/without skill | `/eval-skill <name>` |
+| Version and release | `/release-skill <name> <version>` |
+
+## Definition of done
+
+A change is done only when all of these hold:
+
+1. `npm run check` exits 0 (the stop hook runs it and sends you back if it fails).
+2. New or changed skills meet `.cursor/docs/quality-bar.md`: hard gates pass, review has no zeros and scores ≥ 16/20, and the eval gate passes when behavior changed.
+3. Generated files are regenerated with `npm run build`, never hand-edited: `skills/*/AGENTS.md`, the SKILL.md quick-reference block, `evals/*/test-cases.json`.
+4. The root `README.md` and `skills.sh.json` list every skill.
+
+## Guardrails
+
+- Evals before content: write `evals/<name>/evals.json` and `triggers.json` and record a baseline before writing a skill body.
+- Verify every factual or version-specific claim against a primary source and record it in `docs/research/<name>.md`.
+- Keep harness workflows in `.cursor/skills/`. `.claude/skills/` and `.agents/skills/` are scanned by the skills CLI and would publish them.
+- Ask before `git push`, tags, releases, or repository settings. Never force-push or skip hooks.
+- When a hook blocks or reports errors, fix the cause; do not route around the hook.
+
+References: `.cursor/docs/authoring-guide.md` (how to write), `.cursor/docs/eval-protocol.md` (how to measure), `AGENTS.md` (commands and formats).

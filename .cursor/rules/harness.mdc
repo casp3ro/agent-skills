@@ -1,0 +1,14 @@
+---
+description: Maintaining the Cursor harness (rules, workflow skills, subagents, hooks, docs, templates)
+globs: .cursor/**, AGENTS.md, CLAUDE.md
+alwaysApply: false
+---
+
+# Harness maintenance
+
+- Layout: `.cursor/rules/` (rules), `.cursor/skills/` (slash workflows, `disable-model-invocation: true`), `.cursor/agents/` (subagents), `.cursor/hooks.json` + `.cursor/hooks/` (guardrails), `.cursor/docs/` (quality bar, eval protocol, authoring guide), `.cursor/templates/` (scaffolds used by `scripts/new-skill.mjs`). Overview: `.cursor/README.md`.
+- Single source of truth: thresholds live in `scripts/validate.mjs` and `.cursor/docs/quality-bar.md`; rules and workflows point to them instead of restating numbers.
+- Keep `00-core.mdc` short (it loads in every chat). Scoped guidance goes in glob-attached rules.
+- Workflow skills must not live in `.claude/skills/` or `.agents/skills/` (the skills CLI publishes those).
+- Any new guardrail gets a case in `scripts/test-harness.mjs`; run `npm run test:harness` after every harness change.
+- Update `.cursor/README.md` when adding or renaming a rule, workflow, subagent or hook.

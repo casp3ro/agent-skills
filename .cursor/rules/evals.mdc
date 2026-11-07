@@ -1,0 +1,18 @@
+---
+description: Writing and maintaining task evals, trigger evals and benchmarks for skills
+globs: evals/**
+alwaysApply: false
+---
+
+# Evals
+
+Protocol: `.cursor/docs/eval-protocol.md`. Thresholds: `.cursor/docs/quality-bar.md` section 3.
+
+- `evals.json`: at least 3 (aim for 5) realistic, multi-step prompts phrased like real users, each with `expected_output` and 2+ objectively checkable `expectations`. Cover the main branches, one edge case, and one wrong-premise request the skill must correct.
+- Each eval includes at least one expectation a baseline (no skill) would likely fail; otherwise it cannot show lift.
+- Expectations describe outcomes ("converts the class to an actor"), never wording ("mentions actors").
+- `triggers.json`: 10+ queries, both kinds. Negatives are near misses (adjacent tech, homonyms, shared keywords), never obviously unrelated. Positives vary phrasing and include requests that do not name the skill.
+- Fixtures go in `evals/<name>/fixtures/` and are referenced by relative path in `files`.
+- `test-cases.json` is generated; do not edit it.
+- Commit `benchmark.md`; raw runs in `runs/` are git-ignored.
+- Never tune a skill to pass eval prompts verbatim. If an expectation passes for both variants every time, strengthen or replace it.

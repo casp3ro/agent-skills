@@ -10,7 +10,9 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "validate": "node scripts/validate.mjs",
-    "check": "node scripts/build.mjs --check && node scripts/validate.mjs",
+    "test:harness": "node scripts/test-harness.mjs",
+    "new-skill": "node scripts/new-skill.mjs",
+    "check": "node scripts/build.mjs --check && node scripts/validate.mjs && node scripts/test-harness.mjs",
     "dev": "node scripts/build.mjs && node scripts/validate.mjs"
   }
 }

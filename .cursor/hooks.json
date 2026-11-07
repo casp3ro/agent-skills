@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      { "command": "node .cursor/hooks/session-context.mjs", "timeout": 20 }
+    ],
+    "preToolUse": [
+      { "command": "node .cursor/hooks/guard-edits.mjs", "matcher": "Write|Delete", "timeout": 10 }
+    ],
+    "beforeShellExecution": [
+      { "command": "node .cursor/hooks/guard-shell.mjs", "timeout": 10 }
+    ],
+    "postToolUse": [
+      { "command": "node .cursor/hooks/validate-on-edit.mjs", "matcher": "Write", "timeout": 60 }
+    ],
+    "stop": [
+      { "command": "node .cursor/hooks/check-on-stop.mjs", "timeout": 120, "loop_limit": 3 }
+    ]
+  }
+}
